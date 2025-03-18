@@ -51,10 +51,11 @@ app.post('/api/tasks', (req: Request, res: Response) => {
 app.put('/api/tasks/:id', (req: Request, res: Response) => {
   let id = req.params.id
   const { title, description, completed} = req.body
-   if (!title || !description || !completed) {
-     return res.status(400).json({ error: "Faltan datos" });
+   if (title === ''|| description ==='') {
+    res.status(400).json({ error: "Faltan datos" });
+    return 
    }
-   db.run("UPDATE tasks SET title = ?, description = ?, completed = ?, WHERE id = ?", 
+   db.run("UPDATE tasks SET title = ?, description = ?, completed = ? WHERE id = ?", 
     [title, description, completed, id], function (err) {
     if (err) {
       return res.status(500).json({ error: err.message });
