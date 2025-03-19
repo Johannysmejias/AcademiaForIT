@@ -1,6 +1,9 @@
+import cors from "cors";
 import express, { Request, Response } from "express";
 import { Task } from './task';
 import sqlite3 from "sqlite3";
+
+
 
 const db = new sqlite3.Database("./database.db", (err) => {
   if (err) {
@@ -24,9 +27,9 @@ db.serialize(() => {
 
 
 const app = express();
-const port = 3000
+const port = 3001
 app.use(express.json())
-
+app.use(cors())
 
 app.get('/api/tasks', (req: Request, res: Response) => {
   db.all("SELECT * FROM tasks", [], (err, rows) => {
@@ -40,6 +43,10 @@ app.get('/api/tasks', (req: Request, res: Response) => {
 app.post('/api/tasks', (req: Request, res: Response) => {
   const { title, description, completed} = req.body
   const createdAt = new Date().toLocaleString()
+  if (title === ''|| description ==='') {
+    res.status(400).json({ error: "Faltan datos" });
+    return 
+   }
   db.run("INSERT INTO tasks (title, description, completed, createdAt) VALUES (?, ?, ?, ?)", 
     [title, description, completed, createdAt], function (err) {
     if (err) {
@@ -85,3 +92,4 @@ app.delete('/api/tasks/:id', (req: Request, res: Response) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
+
