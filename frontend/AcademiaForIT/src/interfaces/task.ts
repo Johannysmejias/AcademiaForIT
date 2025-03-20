@@ -5,3 +5,4 @@ export interface Task{
     completed: boolean,
     createdAt: Date
 }
+export default Task;
