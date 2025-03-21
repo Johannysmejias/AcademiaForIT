@@ -1,8 +1,12 @@
 import cors from "cors";
 import express, { Request, Response } from "express";
-import { Task } from './task';
+import 'dotenv/config'
 import sqlite3 from "sqlite3";
 
+const app = express();
+const port = process.env.PORT;
+app.use(express.json())
+app.use(cors())
 
 
 const db = new sqlite3.Database("./database.db", (err) => {
@@ -26,10 +30,7 @@ db.serialize(() => {
 });
 
 
-const app = express();
-const port = 3001
-app.use(express.json())
-app.use(cors())
+
 
 app.get('/api/tasks', (req: Request, res: Response) => {
   db.all("SELECT * FROM tasks", [], (err, rows) => {
@@ -39,6 +40,20 @@ app.get('/api/tasks', (req: Request, res: Response) => {
     res.json(rows);
   });
 
+})
+
+app.get('/api/tasks/:id', (req: Request, res:Response) => {
+  const {id} = req.params;
+
+  db.get("SELECT * FROM tasks WHERE id = ?", [id], (err, row)=> {
+    if(err){
+      return res.status(500).json({error: err.message});
+    } 
+    if(!row){
+      return res.status(404).json({error: "Tarea no encontrada"});
+    }
+    res.json(row);
+  })
 })
 app.post('/api/tasks', (req: Request, res: Response) => {
   const { title, description, completed} = req.body
