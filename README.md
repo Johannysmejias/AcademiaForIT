@@ -59,11 +59,3 @@ Si experimentas problemas al instalar dependencias o al ejecutar los servidores,
 
 Este archivo `README.md` cubre los pasos para clonar el repositorio, instalar dependencias, configurar las variables de entorno y ejecutar tanto el backend como el frontend.
 
-![Captura de pantalla 2025-03-21 105758](https://github.com/user-attachments/assets/7c46cc3a-8995-47b2-8118-ae8c63f5ad16)
-![Captura de pantalla 2025-03-21 105827](https://github.com/user-attachments/assets/7039b784-c581-4d3d-9f68-65eef1da1d34)
-![Captura de pantalla 2025-03-21 105856](https://github.com/user-attachments/assets/53d2e88c-15df-4151-bf83-c4f032078404)
-![Captura de pantalla 2025-03-21 105915](https://github.com/user-attachments/assets/d565aa0b-fd80-4a7d-a99b-c9098892804b)
-![Captura de pantalla 2025-03-21 105234](https://github.com/user-attachments/assets/b60a56d8-da9d-4c9a-986a-dcee6164b601)
-![Captura de pantalla 2025-03-21 105401](https://github.com/user-attachments/assets/40abb485-e1ae-4a90-86d9-1db70809c276)
-![Captura de pantalla 2025-03-21 105512](https://github.com/user-attachments/assets/b4609cd9-f35d-4662-aa5b-f991da7f5ad9)
-![Captura de pantalla 2025-03-21 105613](https://github.com/user-attachments/assets/872c4590-df77-48e8-8201-8c555fb9d173)
