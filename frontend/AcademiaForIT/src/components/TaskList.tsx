@@ -83,16 +83,16 @@ const TaskList = () => {
     
 
     const columns: GridColDef[] = [
-        { field: 'id', headerName: 'ID', },
-        { field: 'title', headerName: 'Titulo', width: 200 },
-        { field: 'description', headerName: 'Descripción', width: 200 },
+        { field: 'id', headerName: 'ID', disableColumnMenu: true },
+        { field: 'title', headerName: 'Titulo', width: 200, disableColumnMenu: true },
+        { field: 'description', headerName: 'Descripción', width: 200, disableColumnMenu: true},
         {
-            field: 'completed', headerName: 'Estado', width: 200, sortable: false,
+            field: 'completed', headerName: 'Estado', width: 200, sortable: false, disableColumnMenu: true,
             valueGetter: (value, row) => `${row.completed == true ? 'Completada' : 'Incompleta'}`
         },
-        { field: 'createdAt', headerName: 'Fecha de creación', width: 200 },
+        { field: 'createdAt', headerName: 'Fecha de creación', width: 200, disableColumnMenu: true },
         {
-            field: 'actions', headerName: 'Acciones', width: 200, renderCell: (params) => (
+            field: 'actions', headerName: 'Acciones', width: 200,disableColumnMenu: true, renderCell: (params) => (
                 <>
                     <IconButton aria-label="delete" onClick={() => DeleteTask(params.row.id)}> <DeleteIcon /> </IconButton>
 
