@@ -71,8 +71,8 @@ const TaskForm = () => {
                     },
                     body: JSON.stringify(data),
                 });
-                if(response.ok) {
-                   window.location.href = '/'
+                if (response.ok) {
+                    window.location.href = '/'
                 }
             } catch (error) {
                 console.error(error)
@@ -87,10 +87,10 @@ const TaskForm = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify(data),
-            
-                    
+
+
                 });
-                if(response.ok) {
+                if (response.ok) {
                     window.location.href = '/'
                 }
             } catch (error) {
@@ -102,38 +102,45 @@ const TaskForm = () => {
 
 
     return (
-        <div className="Formulario">
-            <Box component="form">
+        <Box component="form"
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "60vh",
+            }}>
+            <FormGroup onSubmit={handleSubmit} sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 2,
+                width: 500,
+            }}>
+                <h1>{id ? "Editar Tarea" : "Nueva Tarea"}</h1>
+                <Link to="/">Volver a la lista</Link>
+                <TextField
+                    id="title"
+                    variant="outlined"
+                    type="text"
+                    placeholder="Título"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                />
+                <TextField
+                    id="description"
+                    variant="outlined"
+                    placeholder="Descripción"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    required
+                />
+
+                <FormControlLabel checked={completed} onChange={() => setCompleted(!completed)} control={<Checkbox />} label="Tarea completada" />
+                <Button variant="contained" type="submit" onClick={CreateOrUpdateTask}>{id ? "Actualizar" : "Crear"}</Button>
+            </FormGroup>
+        </Box>
 
 
-
-                <FormGroup onSubmit={handleSubmit}>
-                    <h1>{id ? "Editar Tarea" : "Nueva Tarea"}</h1>
-                    <Link to="/">Volver a la lista</Link>
-                    <TextField
-                        id="title"
-                        variant="outlined"
-                        type="text"
-                        placeholder="Título"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                    />
-                    <TextField
-                        id="description"
-                        variant="outlined"
-                        placeholder="Descripción"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        required
-                    />
-
-                    <FormControlLabel checked={completed} onChange={() => setCompleted(!completed)} control={<Checkbox />} label="Tarea completada" />
-                    <Button variant="contained" type="submit" onClick={CreateOrUpdateTask}>{id ? "Actualizar" : "Crear"}</Button>
-                </FormGroup>
-            </Box>
-
-        </div>
     )
 }
 export default TaskForm;
